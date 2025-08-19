@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import HeroCarousel from "@/components/site/HeroCarousel";
 import EventsGrid from "@/components/site/EventsGrid";
-import Announcements from "@/components/site/Announcements";
 import MediaSection from "@/components/site/MediaSection";
 import CoordinatorsGrid from "@/components/site/CoordinatorsGrid";
 
@@ -26,7 +25,6 @@ const Index = () => {
 
       <HeroCarousel />
       <main>
-        <Announcements />
         <EventsGrid />
         <MediaSection />
         <CoordinatorsGrid />
