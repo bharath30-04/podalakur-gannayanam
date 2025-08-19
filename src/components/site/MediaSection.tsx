@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
 
 const MediaSection = () => {
   const { toast } = useToast();
-  const isAdmin = false; // Replace with real role after connecting Supabase auth
+  const { isAdmin } = useAuth();
 
   const handleUpload = () => {
     toast({

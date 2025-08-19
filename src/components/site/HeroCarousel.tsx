@@ -1,19 +1,13 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
+import { Link } from "react-router-dom";
 import hero1 from "@/assets/ganesh-hero-1.jpg";
 import hero2 from "@/assets/ganesh-hero-2.jpg";
 import hero3 from "@/assets/ganesh-hero-3.jpg";
 
 const HeroCarousel = () => {
-  const { toast } = useToast();
-
-  const handleLogin = () => {
-    toast({
-      title: "Connect authentication",
-      description: "To enable Google Login, please connect Supabase in Lovable (green button top-right).",
-    });
-  };
+  const { user, signOut } = useAuth();
 
   return (
     <header className="relative">
@@ -42,11 +36,17 @@ const HeroCarousel = () => {
                     </p>
                     <div className="mt-6 flex flex-wrap gap-3">
                       <Button asChild variant="hero" size="lg">
-                        <a href="/media" aria-label="View media gallery">View Gallery</a>
+                        <Link to="/media" aria-label="View media gallery">View Gallery</Link>
                       </Button>
-                      <Button variant="secondary" size="lg" onClick={handleLogin}>
-                        Login with Google
-                      </Button>
+                      {user ? (
+                        <Button variant="secondary" size="lg" onClick={signOut}>
+                          Sign Out
+                        </Button>
+                      ) : (
+                        <Button asChild variant="secondary" size="lg">
+                          <Link to="/auth">Sign In</Link>
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
